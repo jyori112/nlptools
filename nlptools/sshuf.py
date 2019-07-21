@@ -2,8 +2,11 @@ import random
 import sys
 import functools
 import bisect
+import logging
 
 import click
+
+logger = logging.getLogger(__name__)
 
 @functools.total_ordering
 class ScoredLine:
@@ -17,10 +20,15 @@ class ScoredLine:
     def __eq__(self, value):
         return self.score == value.score
 
-@click.command()
-@click.option('--n-lines', '-n', type=int, default=10)
+@click.group()
+def cli():
+    LOG_FORMAT = '[%(asctime)s] [%(levelname)s] %(message)s (%(funcName)s@%(filename)s:%(lineno)s)'
+    logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
+
+@cli.command()
+@click.option('--n-lines', '-n', type=int)
 @click.option('--seed', type=int)
-def main(n_lines, seed):
+def shuffle(n_lines, seed):
     random.seed(seed)
 
     lines = []
@@ -28,13 +36,14 @@ def main(n_lines, seed):
     for line in sys.stdin:
         line = ScoredLine(score=random.random(), line=line)
         bisect.insort_left(lines, line)
-        lines = lines[:n_lines]
+        if n_lines:
+            lines = lines[:n_lines]
         
     for line in lines:
         print(line.line, end='')
 
 if __name__ == '__main__':
-    main()
+    cli()
 
 
 

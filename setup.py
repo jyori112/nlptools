@@ -8,11 +8,13 @@ setup(
     entry_points={
         "console_scripts": [
             "nlptools=nlptools.cli:cli",
-            "emb=nlptools.embeddings:cli"
+            "emb=nlptools.embeddings:cli",
+            "sshuf=nlptools.sshuf:cli"
         ]
     },
     install_requires=[
-        'click'
+        'click',
+        'numpy'
     ]
 )
 
