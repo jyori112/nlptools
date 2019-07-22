@@ -9,7 +9,8 @@ setup(
         "console_scripts": [
             "nlptools=nlptools.cli:cli",
             "emb=nlptools.embeddings:cli",
-            "sshuf=nlptools.sshuf:cli"
+            "sshuf=nlptools.sshuf:cli",
+            "utils=nlptools.utils:cli"
         ]
     },
     install_requires=[
