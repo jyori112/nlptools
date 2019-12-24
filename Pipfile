@@ -8,6 +8,7 @@ jupyter = "*"
 
 [packages]
 numpy = "*"
+gensim = "*"
 
 [requires]
 python_version = "3.7"
