@@ -31,7 +31,7 @@ class Embedding(KeyedVectors):
         self.save(sys.stdin)
 
     @staticmethod
-    def load(fp, vocabsize=None):
+    def load_text(fp, vocabsize=None):
         if isinstance(fp, (str, PosixPath)):
             with open(fp) as f:
                 return Embedding.load(f, vocabsize=vocabsize)
