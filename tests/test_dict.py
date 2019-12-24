@@ -1,6 +1,4 @@
 import unittest
-import io
-import json
 
 from nlptools.utils import Dict
 
